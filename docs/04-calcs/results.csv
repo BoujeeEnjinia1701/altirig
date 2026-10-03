@@ -1,0 +1,110 @@
+section,quantity,value,unit,requirement,note
+A,"ISA 5,000 m: temperature",-17.5,C,,
+A,"ISA 5,000 m: pressure",54.02,kPa,,
+A,"ISA 5,000 m: density",0.7361,kg/m3,R1,
+A,"ISA 6,000 m: density",0.6597,kg/m3,,
+A,"5,000 m density as a share of sea level",60.09,%,,
+A,"Chamber pressure for 5,000 m density at 15 C",60.89,kPa,R1,
+A,"Chamber pressure for 5,000 m density at 20 C",61.94,kPa,R1,
+A,"Chamber pressure for 5,000 m density at 25 C",63,kPa,R1,
+A,"Chamber pressure for 5,000 m density at 30 C",64.06,kPa,R1,
+A,"Density at 54.0 kPa and 20 C (pressure match, not density match)",0.642,kg/m3,,"equals about 6,100 m: matching pressure at room temperature overshoots the density"
+A,"Chamber pressure for 6,000 m density at 30 C (lowest working pressure needed)",57.41,kPa,,
+A,"Pressure difference at the R1 point (5,000 m density, 20 C)",39.38,kPa,,
+A,"Relief valve setting: lowest chamber pressure 46.3 kPa, difference",55.02,kPa,R12,
+A,Design pressure difference for the vessel (full vacuum),101.3,kPa,R7,conservative: the pump can reach near full vacuum if the relief valve sticks
+B,Shell: unsupported length used (skirts plus a third of each head),1718,mm,,
+B,Shell: elastic buckling pressure (Windenburg and Trilling),1351,kPa,,
+B,Shell: long-cylinder lower bound (no end support),209.4,kPa,,
+B,Shell: plastic collapse pressure 2 x yield x t/D,3671,kPa,,
+B,Shell: predicted collapse with 0.5 knock-down,675.6,kPa,,
+B,Shell: collapse factor at full vacuum,6.667,,R7,target at least 4
+B,Shell: factor at full vacuum even with no end support at all (long-cylinder bound x 0.5),1.034,,,
+B,Heads: equivalent sphere radius 0.9 D,731.7,mm,,
+B,Heads: collapse factor at full vacuum,40.26,,R7,
+B,Openings: shell thickness needed for factor 4,5.176,mm,,
+B,Window opening: area to replace,641.1,mm2,,
+B,"Window opening: area available (shell excess, nozzle wall outside and set-in) / needed",1.711,,R7,at least 1; no pad needed
+B,Feed-through opening: area to replace,378.8,mm2,,
+B,"Feed-through opening: area available (shell excess, nozzle wall outside and set-in) / needed",2.292,,R7,at least 1; no pad needed
+B,"Window: span radius (gasket outer edge, simply supported)",165,mm,,
+B,Window: bending stress at full vacuum,8.715,MPa,,
+B,Window: factor on yield at full vacuum,7.114,,R7,rule used: at least 6 for plastic windows
+B,Window: centre deflection at full vacuum,2.589,mm,,
+B,Feed-through plate: bending stress at full vacuum (holes ignored),3.874,MPa,,6082-T6 yield 250 MPa
+B,Door: area inside the gasket line,0.6151,m2,,
+B,Door: force holding it shut at the R1 point,24.23,kN,R11,about 2.5 t: it cannot be opened under vacuum
+B,Door: force at full vacuum,62.33,kN,,
+B,Door: force at only 2 kPa below atmosphere,1.23,kN,R11,
+B,Door gasket: bearing stress at full vacuum,0.4982,MPa,,sponge closes fully; rings take the load
+B,Latches: force to compress the sponge 25 % for the first seal,6.256,kN,,
+B,Latches: force each (3 latches),2.085,kN,,latches rated at least 3 kN
+B,Hinge: door mass carried,72,kg,,
+B,Hinge: horizontal force at each lug pair,920.9,N,,20 mm pin and 15 mm lugs: stresses under 10 MPa
+C,Chamber free volume,0.9281,m3,,
+C,Pump speed used (85 % of 170 L/min),144.5,L/min,,
+C,Pump-down time to 54.0 kPa,4.04,min,R8,
+C,Pump-down time to the R1 density at 20 C (61.9 kPa),3.161,min,,
+C,Leak allowance (free air),0.2,L/min,,equivalent pressure rise about 0.3 kPa/min at 54 kPa
+C,Vent time through the 6 mm bleed orifice from 54 kPa to ambient,128.6,s,R11,
+D,Inside wall area,5.264,m2,,
+D,"Air mass at 5,000 m density",0.6832,kg,,
+D,"Air temperature rise above the wall at 1,500 W",9.498,K,,
+D,Air thermal time constant,4.348,s,,
+D,"Wall warming rate at 1,500 W",0.4163,K/min,,
+D,Pressure rise the controller must make to hold density as the air warms,3.24,%,,
+D,Density error: pressure sensor (50 Pa),0.08072,%,,
+D,Density error: temperature probe (0.15 K),0.05117,%,,
+D,Density error: air temperature spread (1.5 K),0.5117,%,,
+D,Density error: humidity correction,0.07,%,,
+D,Density error: control band,0.3,%,,
+D,Density error: root sum square,0.6049,%,R2,target within 1 %
+E,"50 N with the example propeller, sea level, 20 C: speed",8467,rpm,,
+E,"50 N with the example propeller, sea level, 20 C: shaft power",1126,W,,
+E,"50 N with the example propeller, sea level, 20 C: torque",1.27,N m,R4,
+E,"50 N, sea level, 20 C: tip speed",168.5,m/s,,
+E,"50 N with the example propeller, 5,000 m density: speed",1.083e+04,rpm,,
+E,"50 N with the example propeller, 5,000 m density: shaft power",1440,W,,
+E,"50 N with the example propeller, 5,000 m density: torque",1.27,N m,R4,
+E,"50 N, 5,000 m density: tip speed",215.5,m/s,,
+E,"Electrical power for 50 N at 5,000 m density (motor and ESC 80 %)",1800,W,,
+E,"Thrust the 1,500 W supply allows with the example propeller at 5,000 m density",44.27,N,,stand range is 50 N; a larger supply is needed only for the heaviest propellers
+E,"Blade Reynolds number at 0.75 R, 6,000 rpm, sea level",1.787e+05,,,
+E,"Blade Reynolds number at 0.75 R, 6,000 rpm, 5,000 m",1.092e+05,,,
+E,Flexures: stiffness of the two leaves together,11.72,N/mm,,
+E,Flexures: share of thrust carried by the leaves (calibrated out),2.9,%,R3,
+E,Flexures: carriage movement at 50 N,0.1237,mm,,
+E,Flexures: leaf bending stress at 50 N,5.8,MPa,,
+E,Flexures: buckling load of the leaves / weight carried,16.72,,,
+E,Flexures: pitching moment from thrust above the cell,9.25,N m,,taken as tension and compression in the leaves
+E,"Thrust error budget (cell 0.05 % of 98 N, cable drag 0.1 N, zero drift, masses, flexure 0.1 %)",0.1334,N,R3,
+E,Thrust error as a share of 50 N,0.2668,%,R3,target no more than 1 %
+E,Torque cell load at 2 N m,33.33,N,R4,"5 kg cell, 49 N"
+E,Bearing friction torque at 50 N thrust,0.001125,N m,,
+E,Torque error budget,0.005695,N m,R4,
+E,Torque error as a share of 2 N m,0.2847,%,R4,target within 2 %
+E,"Speed: blade-pass rate at 11,000 rpm",366.7,Hz,,
+E,"Speed: timing error with a 1 microsecond timer, one revolution",0.01833,%,R4,
+E,Propeller tip to shell inside,210.1,mm,R5,
+E,Propeller tip to deck,80,mm,R5,
+E,Window edge from the propeller plane,18.32,deg,R11,outside the 15 deg fragment zone
+E,Feed-through edge from the propeller plane,20.92,deg,R11,
+E,"Energy of a half blade (25 g) released at 50 N, 5,000 m density",208.9,J,,6.35 mm steel shell contains it
+F,Disc area / chamber section,0.2255,,,
+F,Vessel inside diameter / propeller diameter,2.106,,,
+F,"Baffle loss coefficient (63 % open, at the section velocity)",1.85,,,
+F,"Extra loop loss, with the baffle",0.3576,dynamic heads,,
+F,"Chamber thrust excess, with the baffle: same power model",2.895,%,R6,
+F,"Chamber thrust excess, with the baffle: same speed model",5.255,%,R6,target within 5 %
+F,"Extra loop loss, baffle removed",0.1695,dynamic heads,,
+F,"Chamber thrust excess, baffle removed: same power model",1.393,%,R6,
+F,"Chamber thrust excess, baffle removed: same speed model",2.531,%,R6,target within 5 %
+F,"Option: 80 % open baffle, same power model",1.834,%,R6,
+F,"Option: 80 % open baffle, same speed model",3.332,%,R6,
+F,"Option: 1,016 mm vessel with the baffle, same power model",1.105,%,R6,
+F,"Option: 1,016 mm vessel with the baffle, same speed model",2.008,%,R6,
+F,Return flow speed along the wall at 50 N,3.938,m/s,,
+G,Logging rate,20,Hz,R9,load-cell amplifiers sample at 80 Hz
+H,Estimated cost of the constructable design,4920,USD,R10,
+H,Value-engineering target,1000,USD,R10,
+H,Over the value-engineering target by,3920,USD,R10,
