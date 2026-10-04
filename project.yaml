@@ -12,7 +12,7 @@ trl_evidence:
   - docs/03-requirements.md
   - docs/decisions/0001-trl2-review-decisions.md
   - docs/decisions/0002-design-for-construction.md
-  - docs/decisions/0003-requirement-decisions-round2.md
+  - docs/decisions/0003-requirement-decisions.md
   - docs/04-calcs/01-sizing.md
   - docs/04-calcs/sizing.py
   - cad/src/model.py
@@ -29,7 +29,7 @@ pitch: >-
   A test chamber that simulates thin air at 5,000 m so propellers and motors can be proven before going up the mountain.
 problem: >-
   Propellers and motors make much less thrust in the thin air of the high Himalaya, but most makers can only test them at the altitude of their workshop. They find out what works at 5,000 m by flying there, which is slow, costly and risky.
-budget_usd: 1000  # value-engineering target; estimated cost of the constructable design USD 3,920 after ALR-DDR-003 (ALR-CAL-001 H)
+budget_usd: 1000  # value-engineering target; estimated cost of the constructable design USD 3,865 (ALR-CAL-001 H); R10 restated to USD 4,000 (ALR-DDR-003)
 difficulty: 3  # 1 easiest, 5 hardest
 hero_image: media/hero.png
 licenses:

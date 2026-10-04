@@ -1,66 +1,5 @@
 # Review note: AltiRig
 
-## Session 2026-10-03: round 2 requirement decisions applied
-
-Run under Amish's instruction of 2026-10-03: "i approve all of the 47 recommendations provided by you. Execute them." Both AltiRig decisions were taken as recommended, exactly as worded, and carried into the design at TRL 3 scope only.
-
-### What was done
-
-- `docs/decisions/0003-requirement-decisions-round2.md` (ALR-DDR-003): R6 option B and R10 option B, with their conditions.
-- `cad/src/model.py`: baffle `BAF_OPEN` 0.80, hole pattern 10 mm across-flats hexagonal on an 11.2 mm pitch; the baffle's mass now counts only the metal left by the open area. Outer geometry, overlaps (none) and clearances unchanged, so the STEP and STL exports and `media/model.glb` were not regenerated.
-- `docs/04-calcs/sizing.py`, `results.csv`, `01-sizing.md` (ALR-CAL-001 v0.3): re-run; the 63 % baffle and the reserve 1,016 mm vessel kept as comparison lines; R10 cost with the fall-back cases.
-- `bom/bom.csv`: lines 1, 3, 17, 29 and 32 changed (below).
-- `docs/05-build-plan.md` (ALR-BLD-001 v0.2): surplus pipe and head acceptance checks (sections 3.1 and 3.10), new baffle (3.15), borrowed pump and supply specifications (3.23).
-- Drawings: `cad/drawings/ALR-DWG-001` to Rev P3 (`cad/src/sheets.py`, baffle note now from `BAF_OPEN`); `ALR-DWG-115` regenerated (`cad/src/build_plan_media.py sheets 115`); concept media regenerated (`cad/src/concept_media.py`) for the cost line on the blueprint ALR-DWG-010.
-- `docs/03-requirements.md` v0.4, `docs/02-concept.md` v0.4, `docs/06-design-decisions.md` v0.2, `README.md`, `project.yaml` (budget comment, trl_evidence).
-
-### Results
-
-*Requirement status, before and after.*
-
-| ID | Before | After |
-| --- | --- | --- |
-| R6 | At risk: 2.9 % to 5.3 % with the 63 % baffle | Met on paper: 1.8 % (same power) to 3.3 % (same speed) with the 80 % baffle; TRL 4 comparison decides it |
-| R10 | Not met: USD 4,920 (USD 3,920 over the target) | Not met: USD 3,920 (USD 2,920 over the target); USD 4,390 if the surplus steel fails its checks, USD 4,930 if the supply and pump also have to be bought |
-| Others | R1 to R5, R7 to R9, R11, R12 met | Unchanged |
-
-Eleven of twelve requirements are now met on paper (was ten).
-
-- Mass: the real baffle falls from about 2.9 kg to about 1.5 kg (1.3 kg less, not the "about 3 kg" in the option, which was rounded high). The model total is 586 kg (was 593 kg, of which about 4.8 kg was the old solid-disc over-count).
-
-### Cost
-
-- Value-engineering target USD 1,000 (unchanged in `project.yaml`). Estimated cost USD 4,920 before, USD 3,920 after: shell USD 420 to 210 (surplus estimate), heads 2 x USD 260 to 2 x 130 (surplus estimate), baffle USD 75 to 85, pump and hose USD 260 to 40 (hose and adapter estimate, pump borrowed), motor supply USD 320 to 0 (borrowed). The surplus prices are estimates at about half the new prices.
-
-### Decisions recorded
-
-- R6: option B, 80 % open baffle on the same tabs; option C (1,016 mm vessel) held in reserve if the TRL 4 comparison still shows more than 5 %.
-- R10: option B, surplus pipe and heads, the host lab's DC supply and a suitable workshop pump, provided the surplus pipe passes the roundness and thickness checks.
-
-### New questions, proposed, awaiting Amish
-
-**Baffle stiffness.**
-
-- **State:** an 80 % open sheet leaves bars of about 1.2 mm between the holes, so the 790 mm disc held at four tabs is much less stiff than the 63 % plate. The propeller's jet at 50 N puts an estimated 30 N on it; it may deflect several millimetres or flutter, which would add noise to the thrust reading and could loosen the bolts.
-- **Option A:** fit it as specified and check its deflection under the running propeller in the TRL 4 comparison runs. No cost or mass change; R6 stays at 1.8 % to 3.3 %.
-- **Option B:** add a 20 x 3 mm flat-bar ring round the rim, carrying the four tab holes. About USD 15 (estimate) and about 1.2 kg; it blocks about 10 % of the disc, so the overall open area falls to about 72 % and the R6 estimate rises to 2.2 % to 4.0 % (still met on paper, with less margin).
-- **Option C:** specify only expanded steel mesh with heavy strands (3 mm or more), which is stiffer for the same open area. No cost or mass change expected; fewer suppliers.
-- **Recommendation: A.** The load is small and the four tabs are near the rim; the comparison runs show whether it moves, and B or C can follow without changing the vessel.
-
-### Photoreal renders
-
-- No re-render is needed: the baffle is drawn as a plain disc in `product_model.py` and sits inside the closed vessel, so the hero, exploded and detail views do not change.
-
-### Safety concerns
-
-- Second-hand steel: the shell's collapse factor of 6.7 holds only if the surplus pipe is round within 8 mm and no thinner than 5.9 mm; the build plan now rejects a pipe or head that fails, and the qualified engineer's review and the proof pump-down behind a guard are unchanged.
-- Borrowed pump: used only with a thermal overload and an exhaust filter, exhaust led outdoors.
-- Borrowed supply: switched by the interlocked contactor and the emergency stop like the bought one; it must have a remote on/off input.
-
-### Recommended next step
-
-- Amish decides the baffle stiffness question above (recommendation A). Then, when the phase cap allows TRL 4: engineer's review of the vessel calculation, sourcing of the surplus steel against its checks, and the R6 comparison runs with and without the baffle.
-
 ## Session 2026-09-30: scaffolded
 
 ### What was done
@@ -188,3 +127,44 @@ Run under Amish's 2026-10-03 instructions: "start with the first 14 repos from t
 ## 2026-10-03: photoreal renders
 
 Rendered with Blender Cycles on Amish's Mac from `cad/src/product_model.py`; captioned with `.kit/photo_caption.py`; `media/card.png` and `media/social-preview.png` made with `.kit/cards.py`. Views: hero, exploded, detail. image_qc passes and `render.py --check` has no FAIL.
+
+## 2026-10-03: Amish's requirement decisions carried out
+
+Amish, 2026-10-03: "i agree with all the 46 recommendations you provided. please proceed." For AltiRig these are decisions 41B (R6) and 42B (R10), each as recommended in the TRL 3 section above. Recorded in `docs/decisions/0003-requirement-decisions.md` (ALR-DDR-003) and the register `docs/06-design-decisions.md` v0.2. Not committed or pushed (batch run).
+
+### Changes
+
+- **41B, R6.** The baffle (BOM line 17) is now 2 mm perforated steel with 22 mm square holes on a 24.5 mm square pitch: 80.6 % open, 2.5 mm bars, the same 790 mm disc on the same four tabs. About 1.5 kg; USD 85 (USD 10 more; price basis: the 63 % sheet's USD 75 plus a less common square-hole pattern). The 1,016 mm vessel is held in reserve if the TRL 4 comparison runs show more than 5 %.
+- **42B, R10.** Shell (line 1) a surplus offcut, USD 150 (was 420; about 185 kg at about USD 0.80 a kg). Heads (line 3) second-hand or overstock, USD 130 each (was 260; about half the new price). Vacuum pump (line 29) from the host lab: only the hose, clamps and adapter are bought, USD 45 (was 260). Motor DC supply (line 32) from the host lab, USD 0 (was 320), still switched through the cabinet's interlocked contactor and emergency stop. R10 restated in `docs/03-requirements.md` v0.4 as "complete rig at or below USD 4,000, built with a surplus pipe offcut and tank heads that pass the roundness and thickness checks, and the host lab's existing DC supply and vacuum pump; the USD 1,000 value-engineering target is kept as a control figure".
+- **Model.** `cad/src/model.py`: `BAF_OPEN` 0.80, `BAF_HOLE` 22, `BAF_PITCH` 24.5, new `baffle_open()`; new checks that the open area is at least 80 % and the bars are no thinner than the sheet; the baffle's mass now counts only the solid share of the sheet (it had been counted as a solid 7.7 kg disc). Checks: no overlaps, both new checks pass. STEP and STL regenerated.
+- **Calculations.** `docs/04-calcs/sizing.py` and `01-sizing.md` v0.3: section F with the 80 % baffle as designed (superseded 63 % case and the 1,016 mm reserve kept for comparison), section H with the restated R10 and a cost-change table with a price basis per line; `results.csv` re-run.
+- **Pictures.** General arrangement ALR-DWG-001 Rev P3 (baffle note 80 % open). Making sketches ALR-DWG-101 Rev P2 (surplus pipe checks before buying), ALR-DWG-110 Rev P2 (surplus head checks), ALR-DWG-115 Rev P2 (80 % square-hole sheet). Concept blueprint key figures (chamber effect and cost) and the concept media regenerated (`model.glb` is now 3.9 MB, was 1.3 MB, at the required glTF deflections). The overview, joint 7 and Step 12 are unchanged: the model draws the baffle as a plain disc, so they look the same.
+- **Text.** `docs/05-build-plan.md` v0.2 (summary, 3.1 shell, 3.15 baffle, 3.23 bought components with the host lab's pump and supply, Step 20), `docs/02-concept.md` v0.4, `README.md`, `project.yaml` (budget comment, trl_evidence).
+- **Appearance model.** `cad/src/product_model.py` now cuts the baffle's square holes (inside an 8 mm rim, clear of the bolt holes) so the exploded render shows the open sheet; scenes re-exported to `/home/claude/renders/altirig`. This replaces the earlier plain-disc deviation.
+
+### New results (ALR-CAL-001 v0.3)
+
+- R6: met on paper. 1.8 % (same power) to 3.3 % (same speed) more thrust than open air, against 5 % (was 2.9 % to 5.3 %). Baffle removed: 1.4 % to 2.5 %. The TRL 4 comparison runs with and without the baffle decide it.
+- R10: met as restated. USD 3,865 against USD 4,000 (USD 135 under). Value-engineering target: USD 1,000. Estimated cost of the constructable design: USD 3,865 (USD 2,865 over the target). `budget_usd` unchanged.
+- R8: unchanged at 4.0 min with a 170 L/min host lab pump; a pump rated 140 L/min gives about 4.9 min, so the host lab's pump must be at least 140 L/min.
+- Mass: about 585 kg with the pump and cabinet (model); the 80 % baffle is 1.3 kg lighter than the 63 % sheet.
+- All twelve requirements are now met on paper.
+
+### For Amish
+
+- No new decision. The cost now depends on the host lab: without its pump and supply the rig costs about USD 4,400, over the restated R10. What the lab's pump and supply must meet is in the register's To confirm list (rows 6 and 9).
+- The photoreal renders (`media/render-*.png`), card and social preview still show the plain baffle disc; re-render on the Mac from the re-exported scenes.
+
+### Cross-repo actions
+
+- None. Neither decision touches another repo.
+
+### Safety
+
+- No change to the vessel or its safety case. Surplus pipe and heads are accepted only after the roundness and thickness checks that the shell's collapse factor of 6.7 assumes; the build plan and making sketches now put these checks before purchase.
+- The host lab's DC supply is never wired straight to the speed controller: it is switched by the cabinet's interlocked contactor and emergency stop (R11). The host lab's pump must have a thermal overload and an oil-mist filter, exhausting outdoors.
+- The 80 % baffle carries no pressure; its rim is filed smooth to remove sharp part-holes.
+
+## 2026-10-04: photoreal renders redone after the round-2 and round-3 decisions
+
+Views: hero, exploded, detail; cards regenerated; image_qc passes and `render.py --check` has no FAIL.

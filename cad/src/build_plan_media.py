@@ -116,13 +116,15 @@ def overview():
 
 
 # ------------------------------------------------------------------ making sketches
-def sheet(n, key, title, material, notes, neighbours=(), view_shape=None, inset=(24, -58), name=None, shape=None):
+def sheet(n, key, title, material, notes, neighbours=(), view_shape=None, inset=(24, -58), name=None, shape=None,
+          rev="P1", revisions=None):
     c = comps()[key]
     part = Part(name or c.name, shape if shape is not None else c.shape, COL[key], c.bom)
     nb = [comps()[k] if isinstance(k, str) else k for k in neighbours]
     nbp = [Part(x.name, x.shape, "#D1D5DB") if hasattr(x, "key") else x for x in nb]
     return bv.component_sheet(part, nbp, project="AltiRig", dwg_no=f"ALR-DWG-{n}", title=title, material=material,
-                              notes=notes, date=DATE, view_shape=view_shape, inset_view=inset)
+                              notes=notes, date=DATE, view_shape=view_shape, inset_view=inset, rev=rev,
+                              revisions=revisions)
 
 
 def sheets(which=None):
@@ -130,8 +132,10 @@ def sheets(which=None):
     S = {}
     S[101] = lambda: sheet(101, "shell", "AltiRig shell: pipe offcut with nozzle holes",
                            "Steel pipe 813 OD x 6.35 wall (32 in x 1/4 in), 1,500 long", [
-        "Cut the pipe 1,500 long, ends square within 1 mm; check it is round",
-        "  within 8 mm (largest less smallest diameter); reject a dented pipe",
+        "Surplus offcut: before buying, check it is round within 8 mm (largest",
+        "  less smallest diameter) and the wall is 5.9 or more at 8 points",
+        "  round each end; reject a dented or pitted pipe",
+        "Cut the pipe 1,500 long, ends square within 1 mm",
         f"Mark a line along the top; hole centres measured from the door end:",
         f"  window hole 273.1 dia at {P['WIN_X']:.0f}, on the side 90 deg from the top",
         f"  feed-through hole 168.3 dia at {P['FT_X']:.0f}, same side as the window",
@@ -140,7 +144,9 @@ def sheets(which=None):
         "  the axis; grind smooth; bevel the outside edge for the fillet weld",
         "Saddles, rails, tabs, ring and head are welded on (assembly steps 1 to 5)",
         "Check: holes on the right side and line; nozzle stubs slide in",
-    ], ["shell_ring", "rear_head", "saddle1", "saddle2"])
+    ], ["shell_ring", "rear_head", "saddle1", "saddle2"], rev="P2",
+        revisions=[("P1", "Making sketch", DATE, "AC"),
+                   ("P2", "Surplus pipe checks before buying (decision 42B)", DATE, "AC")])
     S[102] = lambda: sheet(102, "shell_ring", "AltiRig flange rings: shell end and door (make 2)",
                            "Steel plate 20 thick (S275 or A36)", [
         "Cut two rings 960 OD x 813 ID from 20 mm plate (plasma or waterjet)",
@@ -236,6 +242,8 @@ def sheets(which=None):
     S[110] = lambda: sheet(110, "door_head", "AltiRig door: head welded into a flange ring",
                            "Bought 813 OD 2:1 head, 6.35; door flange ring (sheet 102)", [
         "The door is the second tank head with the second flange ring",
+        "Surplus heads: 813 OD, wall 5.9 or more, 40 mm skirt; check",
+        "  before buying that the skirt fits the ring and the pipe",
         "Set the ring over the head's 40 mm skirt, face flush with the",
         "  skirt's open end; check the face is flat within 1 mm",
         "Fillet weld ring to skirt both sides in short balanced runs",
@@ -244,7 +252,9 @@ def sheets(which=None):
         "The door weighs about 72 kg: lift it with a hoist or two people",
         "Check: door face flat; no weld proud of the face",
     ], ["door_ring", "door_lugs"], name="Door (head, flange ring and lugs)",
-        shape=fuse("door_head", "door_ring", "door_lugs"), inset=(20, -130))
+        shape=fuse("door_head", "door_ring", "door_lugs"), inset=(20, -130), rev="P2",
+        revisions=[("P1", "Making sketch", DATE, "AC"),
+                   ("P2", "Surplus head checks before buying (decision 42B)", DATE, "AC")])
     S[111] = lambda: sheet(111, "window", "AltiRig window", "Clear polycarbonate sheet 20 thick (never acrylic)", [
         f"Cut a {P['WIN_D']:.0f} dia disc from 20 mm polycarbonate",
         "Sand the edge smooth and break it with a 1 mm chamfer",
@@ -282,16 +292,17 @@ def sheets(which=None):
         "The deck bolts onto the rails' top legs with M8 bolts and nuts",
         "Check: deck slides in through the door opening and sits flat",
     ], ["rail_p", "rail_n"], view_shape=at_origin(comps()["deck"].shape))
-    S[115] = lambda: sheet(115, "baffle", "AltiRig baffle plate",
-                           f"Perforated steel 2 thick, {P['BAF_OPEN'] * 100:.0f} % open (ALR-DDR-003)", [
-        f"Cut a {P['BAF_D']:.0f} dia disc from sheet with 10 mm AF hex holes at",
-        "  11.2 mm pitch, or expanded mesh 78 to 82 % open; file the rim smooth",
+    S[115] = lambda: sheet(115, "baffle", "AltiRig baffle plate", "Perforated steel 2 thick, 80 % open", [
+        f"Cut a {P['BAF_D']:.0f} dia disc from perforated sheet ({P['BAF_HOLE']:.0f} mm square",
+        f"  holes on a {P['BAF_PITCH']} mm square pitch, 80 % open); file the rim smooth",
         "Drill four 9 dia holes at 45, 135, 225 and 315 deg on a 764 circle",
-        "  to match the tabs; 30 mm washers each side on thin bars",
+        "  to match the tabs; fit them where the solid edge allows",
         "Bolt to the tabs with M8 bolts, nuts and washers",
         "The baffle comes out for the comparison runs without it",
         "Check: 5 mm gap to the wall all round",
-    ], ["tabs"], inset=(15, -100))
+    ], ["tabs"], inset=(15, -100), rev="P2",
+        revisions=[("P1", "Making sketch, 63 % open sheet", DATE, "AC"),
+                   ("P2", "80 % open sheet (decision 41B)", DATE, "AC")])
     S[116] = lambda: sheet(116, "stand_base", "AltiRig stand base plate", "Aluminium 6082 plate 12 thick, 300 x 200", [
         "Cut 300 x 200; four 9 dia holes 20 in from each corner to the deck",
         "Tap M5 holes for the two lower flexure clamps (centres 50 and 250",

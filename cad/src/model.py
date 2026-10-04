@@ -11,7 +11,7 @@ floor. The vessel axis is at Z = PARAMS["Z_AX"].
 The chamber is a horizontal steel vessel made from an 813 mm (32 in) pipe offcut with a bought
 2:1 ellipsoidal head welded on the rear end and a second head on a flange ring as the door. Air
 pressure holds the door shut under vacuum. Inside, a flexure thrust stand on a deck carries the
-motor and propeller on the axis, and an 80 % open perforated baffle plate breaks up the wake. Outside: window,
+motor and propeller on the axis, and a perforated baffle plate breaks up the wake. Outside: window,
 cable feed-through plate, valve manifold, vacuum pump and control cabinet.
 CONCEPT, NOT FOR FABRICATION.
 """
@@ -53,7 +53,8 @@ PARAMS = {
     # inside: deck rails, deck, baffle
     "RAIL_Y": 150.0, "RAIL_T": 6.0, "RAIL_LEG": 50.0, "RAIL_X": (80.0, 980.0), "DECK_Z": 522.0,
     "DECK_T": 8.0, "DECK_W": 400.0,
-    "BAF_X": 1100.0, "BAF_D": 790.0, "BAF_T": 2.0, "BAF_OPEN": 0.80, "BAF_HOLE": 10.0, "BAF_PITCH": 11.2,  # ALR-DDR-003: 80 % open, hex holes 10 AF
+    "BAF_X": 1100.0, "BAF_D": 790.0, "BAF_T": 2.0, "BAF_OPEN": 0.80,   # 80 % open baffle (decision 41B, 2026-10-03)
+    "BAF_HOLE": 22.0, "BAF_PITCH": 24.5,                   # square holes 22 mm on a 24.5 mm square pitch
     "TAB_ANG": (45.0, 135.0, 225.0, 315.0), "TAB_W": 40.0, "TAB_H": 40.0, "TAB_T": 10.0,
     # thrust stand (on the deck)
     "SB": (200.0, 500.0, 100.0, 12.0),                    # base plate x0, x1, half width, thickness
@@ -191,6 +192,11 @@ def levels(P=PARAMS):
     L["burst_half_angle"] = math.degrees(math.atan2(P["PROP_X"] - (P["WIN_X"] + P["WF_ID"] / 2), ri))
     L["burst_half_angle_ft"] = math.degrees(math.atan2(P["FT_X"] - P["FF_ID"] / 2 - P["PROP_X"], ri))
     return L
+
+
+def baffle_open(P=PARAMS):
+    """Open area of the square-hole perforated baffle: (hole / pitch) squared."""
+    return (P["BAF_HOLE"] / P["BAF_PITCH"]) ** 2
 
 
 # ---------------------------------------------------------------- components
@@ -367,10 +373,10 @@ def components(P=PARAMS, door_open=False):
     baf = cyl_x(P["BAF_D"] / 2, P["BAF_X"], P["BAF_X"] + P["BAF_T"], 0, z)
     for a in P["TAB_ANG"]:
         baf = baf - rot_about_axis(cyl_x(4.5, P["BAF_X"] - 1, P["BAF_X"] + P["BAF_T"] + 1, 0, z + ri - 18), a, P)
-    # the disc is drawn solid; its mass counts only the metal left by the 80 % open area (ALR-DDR-003)
-    m_baf = baf.volume * 1e-9 * P["RHO"]["steel"] * (1 - P["BAF_OPEN"])
+    # the model is a plain disc; its mass counts only the solid share of the perforated sheet
+    baf_mass = baf.volume * 1e-9 * P["RHO"]["steel"] * (1 - baffle_open(P))
     add("baffle", "Baffle plate (perforated)", baf, 17, "steel", "buy perforated sheet, cut, drill", (350, 0, 0), "inside",
-        bought_mass=m_baf)
+        bought_mass=baf_mass)
 
     # 18 to 25 thrust stand
     dt = L["deck_top"]
@@ -503,6 +509,11 @@ def check(P=PARAMS, tol=1.0):
             v = (a.shape & b.shape).volume
             if v > tol:
                 bad.append((a.key, b.key, round(v, 1)))
+    # baffle sheet (decision 41B): at least 80 % open, and the bars between holes no thinner than the sheet
+    if baffle_open(P) < P["BAF_OPEN"] - 1e-3:
+        bad.append(("baffle", "open area below BAF_OPEN", round(baffle_open(P), 3)))
+    if P["BAF_PITCH"] - P["BAF_HOLE"] < P["BAF_T"]:
+        bad.append(("baffle", "bar between holes thinner than the sheet", P["BAF_PITCH"] - P["BAF_HOLE"]))
     return bad
 
 
