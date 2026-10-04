@@ -11,7 +11,7 @@ floor. The vessel axis is at Z = PARAMS["Z_AX"].
 The chamber is a horizontal steel vessel made from an 813 mm (32 in) pipe offcut with a bought
 2:1 ellipsoidal head welded on the rear end and a second head on a flange ring as the door. Air
 pressure holds the door shut under vacuum. Inside, a flexure thrust stand on a deck carries the
-motor and propeller on the axis, and a perforated baffle plate breaks up the wake. Outside: window,
+motor and propeller on the axis, and an 80 % open perforated baffle plate breaks up the wake. Outside: window,
 cable feed-through plate, valve manifold, vacuum pump and control cabinet.
 CONCEPT, NOT FOR FABRICATION.
 """
@@ -53,7 +53,7 @@ PARAMS = {
     # inside: deck rails, deck, baffle
     "RAIL_Y": 150.0, "RAIL_T": 6.0, "RAIL_LEG": 50.0, "RAIL_X": (80.0, 980.0), "DECK_Z": 522.0,
     "DECK_T": 8.0, "DECK_W": 400.0,
-    "BAF_X": 1100.0, "BAF_D": 790.0, "BAF_T": 2.0, "BAF_OPEN": 0.63, "BAF_HOLE": 10.0, "BAF_PITCH": 12.0,
+    "BAF_X": 1100.0, "BAF_D": 790.0, "BAF_T": 2.0, "BAF_OPEN": 0.80, "BAF_HOLE": 10.0, "BAF_PITCH": 11.2,  # ALR-DDR-003: 80 % open, hex holes 10 AF
     "TAB_ANG": (45.0, 135.0, 225.0, 315.0), "TAB_W": 40.0, "TAB_H": 40.0, "TAB_T": 10.0,
     # thrust stand (on the deck)
     "SB": (200.0, 500.0, 100.0, 12.0),                    # base plate x0, x1, half width, thickness
@@ -367,7 +367,10 @@ def components(P=PARAMS, door_open=False):
     baf = cyl_x(P["BAF_D"] / 2, P["BAF_X"], P["BAF_X"] + P["BAF_T"], 0, z)
     for a in P["TAB_ANG"]:
         baf = baf - rot_about_axis(cyl_x(4.5, P["BAF_X"] - 1, P["BAF_X"] + P["BAF_T"] + 1, 0, z + ri - 18), a, P)
-    add("baffle", "Baffle plate (perforated)", baf, 17, "steel", "buy perforated sheet, cut, drill", (350, 0, 0), "inside")
+    # the disc is drawn solid; its mass counts only the metal left by the 80 % open area (ALR-DDR-003)
+    m_baf = baf.volume * 1e-9 * P["RHO"]["steel"] * (1 - P["BAF_OPEN"])
+    add("baffle", "Baffle plate (perforated)", baf, 17, "steel", "buy perforated sheet, cut, drill", (350, 0, 0), "inside",
+        bought_mass=m_baf)
 
     # 18 to 25 thrust stand
     dt = L["deck_top"]

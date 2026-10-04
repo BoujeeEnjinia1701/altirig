@@ -3,7 +3,7 @@ doc_id: ALR-PRC-001
 title: AltiRig design precis
 project: AltiRig
 doc_type: Precis
-version: "0.3"
+version: "0.4"
 status: Draft
 date: '2026-10-03'
 author: Amish Chadha
@@ -21,6 +21,10 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: TRL 3; numbers from ALR-CAL-001 and the constructable design (ALR-DDR-002)
+- version: "0.4"
+  date: '2026-10-03'
+  author: Amish Chadha
+  change: Amish's round 2 decisions (ALR-DDR-003); 80 % open baffle, surplus vessel steel, host lab's supply and workshop pump
 ---
 
 # AltiRig design precis
@@ -37,7 +41,7 @@ AltiRig is a horizontal steel vacuum vessel, 813 mm in diameter and about 2 m lo
 
 The motor and propeller under test sit on the axis of the vessel, 510 mm in from the door, blowing toward the rear head. The operator closes the door, latches it and starts the pump. The controller reads two pressure sensors and two temperature probes inside, works out the air density, and holds it at the chosen value by switching the pump and opening a bleed valve that lets room air back in. As the motor runs, its heat warms the air; the controller raises the pressure a little to keep the density steady.
 
-The propeller's thrust moves the carriage of the stand by about a tenth of a millimetre on two spring-steel leaves, and a load cell between the carriage and the base measures it. The motor is mounted on a shaft that turns freely in two bearings; its reaction torque presses an arm onto a second load cell. An optical sensor counts the blades. Motor power comes from a 1,500 W supply in the control cabinet through a speed controller and a sealed feed-through plate. Everything is logged to CSV at 20 Hz.
+The propeller's thrust moves the carriage of the stand by about a tenth of a millimetre on two spring-steel leaves, and a load cell between the carriage and the base measures it. The motor is mounted on a shaft that turns freely in two bearings; its reaction torque presses an arm onto a second load cell. An optical sensor counts the blades. Motor power comes from the host lab's 1,500 W DC supply, switched by the interlocked contactor in the control cabinet, through a speed controller and a sealed feed-through plate. Everything is logged to CSV at 20 Hz.
 
 Inside a closed vessel the propeller drives a loop of air: down the middle, through a perforated baffle, round the rear head and back along the wall. To find what the loop does to the readings, each propeller is also run at ambient pressure and compared with an open-air stand; that comparison is published with the data.
 
@@ -63,12 +67,12 @@ Inside a closed vessel the propeller drives a loop of air: down the middle, thro
 | 11, 12 | Gaskets and latch clamps | EPDM gaskets; three latches pull the door on for the first seal |
 | 13, 14 | Window, spacer and clamp rings | 20 mm polycarbonate window, 340 mm, clamped on its flange |
 | 15 | Feed-through plate | Aluminium plate with five potted IP68 cable glands |
-| 16, 17 | Deck plate and baffle plate | Aluminium deck for the stand; 63 % open perforated baffle, removable |
+| 16, 17 | Deck plate and baffle plate | Aluminium deck for the stand; 80 % open perforated baffle, removable (ALR-DDR-003) |
 | 18 to 25 | Thrust stand | Base, two flexure leaves and clamps, carriage, thrust cell, torque head on bearings, torque arm and cell, speed sensor |
 | 26, 27 | Motor and propeller under test | Example 6S motor and 15 x 5 in propeller; users bring their own |
 | 28 | Valve manifold | Relief valve (opens 55 kPa below atmosphere), gauge, normally-open bleed valve, vent and isolation valves |
-| 29 | Vacuum pump and hose | 170 L/min single-stage rotary vane pump |
-| 30 to 35 | Cabinet, sensors, supply, speed controller, controller, safety controls | Mains protection, 1,500 W motor supply, logger, emergency stop, door interlock and arming key |
+| 29 | Vacuum pump and hose | The host workshop's 170 L/min single-stage rotary vane pump with thermal overload and exhaust filter (ALR-DDR-003); hose and adapter bought |
+| 30 to 35 | Cabinet, sensors, supply, speed controller, controller, safety controls | Mains protection, host lab's 1,500 W motor supply behind the contactor, logger, emergency stop, door interlock and arming key |
 
 ![AltiRig exploded view](../media/exploded.png)
 
@@ -101,9 +105,9 @@ From ALR-CAL-001; assumptions are stated there.
 | Thrust range and error | 0 to 50 N, 0.13 N (0.27 % of full scale) |
 | Torque and speed error | 0.28 % of 2 N m; 0.02 % |
 | Density error | 0.6 % |
-| Chamber effect (estimate) | 2.9 % to 5.3 % more thrust than open air with the baffle |
-| Mass | About 470 kg vessel, about 590 kg with pump and cabinet |
-| Cost | Value-engineering target: USD 1,000. Estimated cost of the constructable design: USD 4,920 (USD 3,920 over the target) |
+| Chamber effect (estimate) | 1.8 % to 3.3 % more thrust than open air with the 80 % open baffle |
+| Mass | About 470 kg vessel, about 590 kg with pump and cabinet (586 kg in the model) |
+| Cost | Value-engineering target: USD 1,000. Estimated cost of the constructable design: USD 3,920 (USD 2,920 over the target), with surplus pipe and heads and the host lab's supply and pump (ALR-DDR-003) |
 
 ![Energy flow at one full-power test point](../media/flow.png)
 

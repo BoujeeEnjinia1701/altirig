@@ -3,7 +3,7 @@ doc_id: ALR-REQ-001
 title: AltiRig requirements
 project: AltiRig
 doc_type: Requirements
-version: "0.3"
+version: "0.4"
 status: Draft
 date: '2026-10-03'
 author: Amish Chadha
@@ -21,11 +21,15 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: TRL 3 status from the calculations (ALR-CAL-001) and the constructable design (ALR-DDR-002)
+- version: "0.4"
+  date: '2026-10-03'
+  author: Amish Chadha
+  change: R6 and R10 status after Amish's round 2 decisions (ALR-DDR-003); targets unchanged
 ---
 
 # AltiRig requirements
 
-Ten of the twelve requirements are met on paper by the constructable design; R6 (chamber effect) is at risk and R10 (cost) is not met. Targets are unchanged from the scaffold except for the two safety requirements added at the TRL 2 review (R11 and R12). Status is on paper only: every requirement is verified by test at TRL 4.
+Eleven of the twelve requirements are met on paper by the constructable design; R10 (cost) is not met. R6 (chamber effect) is met on paper with the 80 % open baffle Amish chose on 2026-10-03 (ALR-DDR-003). Targets are unchanged from the scaffold except for the two safety requirements added at the TRL 2 review (R11 and R12). Status is on paper only: every requirement is verified by test at TRL 4.
 
 *Table 1. Requirements and their status at TRL 3.*
 
@@ -36,18 +40,18 @@ Ten of the twelve requirements are met on paper by the constructable design; R6 
 | R3 | Thrust range and accuracy | 0 to 50 N thrust with error no more than 1% of full scale | Calibration with certified masses before and after a test series | Met on paper: flexure stand with a 10 kg cell, error budget 0.13 N, 0.27 % (ALR-CAL-001, E) |
 | R4 | Torque and speed | Torque 0 to 2 N m within 2%; speed within 0.5% | Calibration arm with masses; optical tachometer cross-check | Met on paper: torque error 0.3 %, speed 0.02 % (ALR-CAL-001, E) |
 | R5 | Propeller size | Propellers up to 380 mm (15 in) diameter | Fit check and clearance measurement | Met on paper: 210 mm from tip to wall, 80 mm to the deck (ALR-CAL-001, E) |
-| R6 | Chamber effect | At ambient pressure, chamber thrust within 5% of an open-air stand for the same propeller and speed | Side-by-side comparison tests | At risk: estimated 2.9 % to 5.3 % high with the 63 % open baffle (ALR-CAL-001, F); see the review note |
+| R6 | Chamber effect | At ambient pressure, chamber thrust within 5% of an open-air stand for the same propeller and speed | Side-by-side comparison tests | Met on paper: estimated 1.8 % to 3.3 % high with the 80 % open baffle (ALR-CAL-001, F; ALR-DDR-003); the TRL 4 comparison decides it, with the 1,016 mm vessel in reserve if it shows more than 5 % |
 | R7 | Vessel safety factor | Collapse pressure at least 4 times the maximum working pressure difference (target) | Calculation reviewed by a qualified engineer, then proof test behind a guard | Met on paper, at full vacuum: shell 6.7, heads 40, window 7.1 on yield (ALR-CAL-001, B) |
 | R8 | Pump-down time | Ambient to 54 kPa in no more than 5 min | Timed pump-down with pressure log | Met on paper: 4.0 min with a 170 L/min pump (ALR-CAL-001, C) |
 | R9 | Data output | Results saved as CSV with density, thrust, torque, speed, voltage and current at 10 Hz or more | Inspection of logged files | Met on paper: 20 Hz logging, amplifiers at 80 Hz (ALR-CAL-001, G) |
-| R10 | Cost | Complete rig at or below USD 1,000 | Costed bill of materials | Not met: estimated USD 4,920, over the value-engineering target by USD 3,920 (ALR-CAL-001, H) |
+| R10 | Cost | Complete rig at or below USD 1,000 | Costed bill of materials | Not met: estimated USD 3,920 with surplus pipe and heads and the host lab's supply and pump (ALR-DDR-003), over the value-engineering target by USD 2,920; USD 4,390 to 4,930 if those fall through (ALR-CAL-001, H) |
 | R11 | Interlocks | The motor can be powered only with the door latched and the arming key turned; the emergency stop removes motor and pump power; the bleed valve opens and vents the chamber on loss of power | Function check of each interlock before first power | Met on paper by design (ALR-BLD-001, sections 4 and 6); the door is also held shut by 24 kN of air load at the 5,000 m point |
 | R12 | Over-vacuum protection | A relief valve stops the chamber going below 46.3 kPa absolute (55 kPa below atmosphere); the vessel is still designed for full vacuum | Relief valve set and checked against the gauge before first pump-down | Met on paper (ALR-CAL-001, A and B) |
 
 ## Requirements not met or at risk
 
-- **R6, at risk.** The closed loop of air inside the vessel adds a little resistance to the propeller's own flow, so the propeller is expected to give slightly more thrust in the chamber than in open air. Two simple models give 2.9 % and 5.3 % with the 63 % open baffle. Options and a recommendation are in `docs/REVIEW.md` for Amish to decide.
-- **R10, not met.** The vessel parts, the welding, the motor supply and the safety controls take the estimate to USD 4,920. The budget is a value-engineering target, not a limit; options to bring the cost down are in `docs/REVIEW.md` and in the design decisions register.
+- **R10, not met.** The vessel parts, the welding, the speed controller and the safety controls take the estimate to USD 3,920, after Amish chose on 2026-10-03 to buy the pipe and heads surplus and to use the host lab's DC supply and a workshop vacuum pump (ALR-DDR-003). The budget is a value-engineering target, not a limit.
+- **R6, met on paper only.** The closed loop of air inside the vessel adds a little resistance to the propeller's own flow, so the propeller is expected to give slightly more thrust in the chamber than in open air. Two simple models give 1.8 % and 3.3 % with the 80 % open baffle (2.9 % and 5.3 % with the superseded 63 % baffle). The side-by-side runs at TRL 4 decide it.
 
 ## Assumptions
 

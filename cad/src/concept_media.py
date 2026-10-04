@@ -63,7 +63,7 @@ outs = render_all(
                  "Pump-down to 54 kPa in about 4 min with a 170 L/min pump",
                  "Flexure stand: thrust 0 to 50 N within 0.27 %, torque to 2 N m",
                  "Air holds the door shut: 24 kN at the 5,000 m point",
-                 "Estimated USD 4,920 against a USD 1,000 target",
+                 "Estimated USD 3,920 against a USD 1,000 target",
                  "Not certified pressure equipment or test equipment"],
     cut_exclude=("Control and power cabinet", "Vacuum pump", "Vacuum hose", "Valve manifold"),
     web_model=False,

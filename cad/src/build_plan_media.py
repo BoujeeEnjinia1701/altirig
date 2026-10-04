@@ -282,11 +282,12 @@ def sheets(which=None):
         "The deck bolts onto the rails' top legs with M8 bolts and nuts",
         "Check: deck slides in through the door opening and sits flat",
     ], ["rail_p", "rail_n"], view_shape=at_origin(comps()["deck"].shape))
-    S[115] = lambda: sheet(115, "baffle", "AltiRig baffle plate", "Perforated steel 2 thick, 63 % open", [
-        f"Cut a {P['BAF_D']:.0f} dia disc from perforated sheet (10 mm holes at",
-        "  12 mm staggered pitch); file any half holes at the rim smooth",
+    S[115] = lambda: sheet(115, "baffle", "AltiRig baffle plate",
+                           f"Perforated steel 2 thick, {P['BAF_OPEN'] * 100:.0f} % open (ALR-DDR-003)", [
+        f"Cut a {P['BAF_D']:.0f} dia disc from sheet with 10 mm AF hex holes at",
+        "  11.2 mm pitch, or expanded mesh 78 to 82 % open; file the rim smooth",
         "Drill four 9 dia holes at 45, 135, 225 and 315 deg on a 764 circle",
-        "  to match the tabs; fit them where the solid edge allows",
+        "  to match the tabs; 30 mm washers each side on thin bars",
         "Bolt to the tabs with M8 bolts, nuts and washers",
         "The baffle comes out for the comparison runs without it",
         "Check: 5 mm gap to the wall all round",

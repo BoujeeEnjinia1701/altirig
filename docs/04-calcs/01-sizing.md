@@ -3,7 +3,7 @@ doc_id: ALR-CAL-001
 title: AltiRig sizing calculations
 project: AltiRig
 doc_type: Calculation
-version: "0.2"
+version: "0.3"
 status: Draft
 date: '2026-10-03'
 author: Amish Chadha
@@ -17,11 +17,15 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: Re-run for the constructable design (ALR-DDR-002), with heavy-wall set-in nozzles, flexure stand, 63 % open baffle and bill of materials cost
+- version: "0.3"
+  date: '2026-10-03'
+  author: Amish Chadha
+  change: Re-run for Amish's round 2 decisions (ALR-DDR-003); 80 % open baffle (R6 now met on paper) and surplus vessel steel with the host lab's supply and pump (estimated cost USD 3,920)
 ---
 
 # AltiRig sizing calculations
 
-On paper the constructable design meets ten of the twelve requirements. The vessel is designed for full vacuum with a collapse factor of 6.7 on the shell, the stand measures 0 to 50 N within 0.27 % of full scale, and a 170 L/min pump reaches 54 kPa in about 4 minutes. R6 (chamber effect) is at risk: the closed loop of air is estimated to raise thrust by 2.9 % to 5.3 % with the baffle fitted. R10 is not met: the estimated cost is USD 4,920 against a USD 1,000 value-engineering target.
+On paper the constructable design meets eleven of the twelve requirements. The vessel is designed for full vacuum with a collapse factor of 6.7 on the shell, the stand measures 0 to 50 N within 0.27 % of full scale, and a 170 L/min pump reaches 54 kPa in about 4 minutes. R6 (chamber effect) is met on paper with the 80 % open baffle that Amish chose on 2026-10-03 (ALR-DDR-003): the closed loop of air is estimated to raise thrust by 1.8 % to 3.3 %. R10 is not met: the estimated cost is USD 3,920 against a USD 1,000 value-engineering target, with the vessel pipe and heads bought surplus and the host lab's motor supply and workshop vacuum pump used (ALR-DDR-003).
 
 > **Safety:** These are hand calculations for a concept on paper, made to choose sizes. They are not a pressure vessel design to any code and do not make the vessel safe to use. A qualified engineer reviews section B before any pump-down, and the first pump-down is a proof test behind a guard (ALR-BLD-001, section 6).
 
@@ -126,12 +130,12 @@ The propeller drives a loop of air inside the vessel: down the middle, through t
 
 | Case | Extra loop loss (dynamic heads at the disc) | Thrust excess, same power | Thrust excess, same speed |
 | --- | --- | --- | --- |
-| As designed: 813 mm vessel, 63 % open baffle | 0.36 | 2.9 % | 5.3 % |
+| As designed: 813 mm vessel, 80 % open baffle (ALR-DDR-003) | 0.22 | 1.8 % | 3.3 % |
 | Baffle removed | 0.17 | 1.4 % | 2.5 % |
-| 80 % open baffle | 0.22 | 1.8 % | 3.3 % |
-| 1,016 mm vessel with the 63 % baffle | about 0.14 | 1.1 % | 2.0 % |
+| Superseded TRL 3 design: 63 % open baffle | 0.36 | 2.9 % | 5.3 % |
+| Reserve: 1,016 mm vessel with the 63 % baffle | about 0.14 | 1.1 % | 2.0 % |
 
-The disc covers 23 % of the chamber section (inside diameter 2.1 times the propeller), and the return flow runs along the wall at about 3.9 m/s at 50 N. The same-speed model is the one that matters for R6, which compares thrust at the same speed. R6 is therefore at risk: the estimate straddles the 5 % target, and the inflow is less even than in open air, which these models do not capture. The side-by-side runs at TRL 4 decide it. The options are set out for Amish in the review note.
+The disc covers 23 % of the chamber section (inside diameter 2.1 times the propeller), and the return flow runs along the wall at about 3.9 m/s at 50 N. The same-speed model is the one that matters for R6, which compares thrust at the same speed. With the 80 % open baffle both estimates are under the 5 % target (3.3 % at the same speed, a margin of 1.7 percentage points), so R6 is met on paper. The inflow is less even than in open air, which these models do not capture, so the side-by-side runs at TRL 4 decide it. If those runs still show more than 5 %, the 1,016 mm vessel (option C) is held in reserve (ALR-DDR-003).
 
 ## G. Data (R9)
 
@@ -139,7 +143,9 @@ The controller logs density, thrust, torque, speed, voltage and current to CSV a
 
 ## H. Mass and cost (R10)
 
-The vessel with its door, saddles and fittings is about 470 kg of steel; the whole rig with the pump and the control cabinet is about 590 kg (model masses). Value-engineering target: USD 1,000. Estimated cost of the constructable design: USD 4,920 (USD 3,920 over the target). The largest items are the vessel steel and heads (about USD 1,500), welding labour (USD 650), the motor supply, speed controller and safety controls (USD 600), and the valve manifold and pump (USD 480).
+The vessel with its door, saddles and fittings is about 470 kg of steel; the whole rig with the pump and the control cabinet is about 590 kg (model masses; 586 kg now that the baffle's mass counts only the metal left by its 80 % open area). Value-engineering target: USD 1,000. Estimated cost of the constructable design: USD 3,920 (USD 2,920 over the target), after Amish's 2026-10-03 decision (ALR-DDR-003) to buy the pipe offcut and tank heads surplus (estimated at about half the new price) and to use the host lab's DC supply and a workshop vacuum pump. The largest items are the vessel steel and heads (about USD 1,030), welding labour (USD 650), the speed controller and safety controls (USD 280), and the valve manifold and pump hose (USD 260).
+
+The saving holds only if its conditions hold. If the surplus pipe or heads fail the roundness and thickness checks and are bought new, the estimate rises to USD 4,390; if the host lab has no suitable supply and the workshop pump lacks a thermal overload, an exhaust filter or the 170 L/min rating, so both are also bought, it rises to USD 4,930.
 
 ## I. Results against every requirement
 
@@ -152,10 +158,10 @@ The vessel with its door, saddles and fittings is about 470 kg of steel; the who
 | R3 | 0 to 50 N, error 0.27 % of full scale | Met |
 | R4 | Torque error 0.28 % of 2 N m; speed 0.02 % | Met |
 | R5 | 380 mm propeller with 210 mm to the wall, 80 mm to the deck | Met |
-| R6 | Thrust 2.9 % to 5.3 % high with the baffle | **At risk** |
+| R6 | Thrust 1.8 % to 3.3 % high with the 80 % open baffle | Met (estimate; TRL 4 comparison decides it) |
 | R7 | Collapse factor 6.7 at full vacuum (shell); heads 40; window 7.1 on yield | Met |
 | R8 | 4.0 min to 54 kPa | Met |
 | R9 | 20 Hz CSV | Met |
-| R10 | USD 4,920 | **Not met** (USD 3,920 over the value-engineering target) |
+| R10 | USD 3,920 (USD 4,390 to 4,930 if the surplus or borrowed items fall through) | **Not met** (USD 2,920 over the value-engineering target) |
 | R11 | Door held by 24 kN under vacuum; key, latch interlock and emergency stop; vent in about 130 s; window and feed-through outside the fragment zone | Met by design |
 | R12 | Relief at 46.3 kPa; vessel designed for full vacuum | Met |

@@ -92,19 +92,21 @@ E,Feed-through edge from the propeller plane,20.92,deg,R11,
 E,"Energy of a half blade (25 g) released at 50 N, 5,000 m density",208.9,J,,6.35 mm steel shell contains it
 F,Disc area / chamber section,0.2255,,,
 F,Vessel inside diameter / propeller diameter,2.106,,,
-F,"Baffle loss coefficient (63 % open, at the section velocity)",1.85,,,
-F,"Extra loop loss, with the baffle",0.3576,dynamic heads,,
-F,"Chamber thrust excess, with the baffle: same power model",2.895,%,R6,
-F,"Chamber thrust excess, with the baffle: same speed model",5.255,%,R6,target within 5 %
+F,"Baffle loss coefficient (80 % open, at the section velocity; ALR-DDR-003)",0.5377,,,
+F,"Extra loop loss, with the baffle",0.2241,dynamic heads,,
+F,"Chamber thrust excess, with the baffle: same power model",1.834,%,R6,
+F,"Chamber thrust excess, with the baffle: same speed model",3.332,%,R6,target within 5 %
 F,"Extra loop loss, baffle removed",0.1695,dynamic heads,,
 F,"Chamber thrust excess, baffle removed: same power model",1.393,%,R6,
 F,"Chamber thrust excess, baffle removed: same speed model",2.531,%,R6,target within 5 %
-F,"Option: 80 % open baffle, same power model",1.834,%,R6,
-F,"Option: 80 % open baffle, same speed model",3.332,%,R6,
-F,"Option: 1,016 mm vessel with the baffle, same power model",1.105,%,R6,
-F,"Option: 1,016 mm vessel with the baffle, same speed model",2.008,%,R6,
+F,"Superseded 63 % open baffle, same power model",2.895,%,R6,for comparison
+F,"Superseded 63 % open baffle, same speed model",5.255,%,R6,for comparison
+F,"Reserve (option C): 1,016 mm vessel with the 63 % baffle, same power model",1.105,%,R6,only if the TRL 4 comparison shows more than 5 %
+F,"Reserve (option C): 1,016 mm vessel with the 63 % baffle, same speed model",2.008,%,R6,only if the TRL 4 comparison shows more than 5 %
 F,Return flow speed along the wall at 50 N,3.938,m/s,,
 G,Logging rate,20,Hz,R9,load-cell amplifiers sample at 80 Hz
-H,Estimated cost of the constructable design,4920,USD,R10,
+H,Estimated cost of the constructable design,3920,USD,R10,
 H,Value-engineering target,1000,USD,R10,
-H,Over the value-engineering target by,3920,USD,R10,
+H,Over the value-engineering target by,2920,USD,R10,
+H,Cost if the surplus pipe and heads fail their checks and are bought new,4390,USD,R10,
+H,"Cost if, in addition, the supply and pump have to be bought",4930,USD,R10,the TRL 3 estimate plus the 80 % baffle

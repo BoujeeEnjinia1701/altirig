@@ -2,7 +2,7 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827) [![REUSE compliant](https://github.com/BoujeeEnjinia1701/altirig/actions/workflows/reuse.yml/badge.svg)](https://github.com/BoujeeEnjinia1701/altirig/actions/workflows/reuse.yml)
 
-**Area:** Aerial robotics · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** about $1,000 USD (estimated cost of the constructable design about $4,920 USD) · **Difficulty:** 3 of 5
+**Area:** Aerial robotics · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** about $1,000 USD (estimated cost of the constructable design about $3,920 USD) · **Difficulty:** 3 of 5
 
 A test chamber that simulates thin air at 5,000 m so propellers and motors can be proven before going up the mountain.
 
@@ -16,7 +16,7 @@ A test chamber that simulates thin air at 5,000 m so propellers and motors can b
 
 AltiRig is the test chamber of the Kitewright civilian drone family. It is a sealed vessel with a thrust stand inside. A vacuum pump lowers the air pressure until the air density matches 5,000 m, and the stand then measures a propeller and motor's thrust, torque, speed and electrical power as they would be in the Himalaya. The same run can be repeated at any density between sea level and the target altitude.
 
-Proving propellers and motors on the bench before carrying them up a mountain saves expeditions and aircraft. An open, documented chamber that a university lab or a welding shop and maker space can build (value-engineering target USD 1,000; the constructable design is estimated at USD 4,920) lets anyone planning high-altitude flights check their numbers first, and lets the Kitewright Lift and Range frames publish thrust data measured, not guessed. ColdCell packs are not tested inside the chamber in this version.
+Proving propellers and motors on the bench before carrying them up a mountain saves expeditions and aircraft. An open, documented chamber that a university lab or a welding shop and maker space can build (value-engineering target USD 1,000; the constructable design is estimated at USD 3,920 with surplus vessel steel and the host lab's motor supply and vacuum pump) lets anyone planning high-altitude flights check their numbers first, and lets the Kitewright Lift and Range frames publish thrust data measured, not guessed. ColdCell packs are not tested inside the chamber in this version.
 
 ## Burning platform
 
@@ -59,7 +59,7 @@ Full problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 A sealed test chamber with a thrust stand that pulls the air down to the density of 5,000 m altitude, so makers measure propeller and motor thrust and power as they will be in the Himalaya.
 
-The constructable design is a horizontal steel vessel made from an 813 mm (32 in) pipe offcut and two bought tank heads, one of them the door, on two saddles. Inside, a flexure thrust stand measures thrust from 0 to 50 N and torque to 2 N m on propellers up to 380 mm. The density of 5,000 m (0.736 kg/m3) is reached at about 61.9 kPa at room temperature in about 3 minutes. The vessel is designed for full vacuum with a collapse factor of 6.7. On paper ten of twelve requirements are met; the chamber effect (R6) is at risk and the cost (R10) is over the value-engineering target (see the [review note](docs/REVIEW.md)).
+The constructable design is a horizontal steel vessel made from an 813 mm (32 in) surplus pipe offcut and two surplus tank heads, one of them the door, on two saddles. Inside, a flexure thrust stand measures thrust from 0 to 50 N and torque to 2 N m on propellers up to 380 mm. The density of 5,000 m (0.736 kg/m3) is reached at about 61.9 kPa at room temperature in about 3 minutes. The vessel is designed for full vacuum with a collapse factor of 6.7. On paper eleven of twelve requirements are met, the chamber effect (R6) among them with an 80 % open baffle; the cost (R10) is over the value-engineering target (see the [review note](docs/REVIEW.md)).
 
 ![AltiRig cutaway: stand, propeller, baffle](media/cutaway.png)
 
@@ -69,17 +69,17 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 
 - Pressure vessel: 813 x 6.35 mm steel pipe shell, 2:1 ellipsoidal tank heads, flange rings and a sponge-gasket door held shut by air
 - Viewing port: 20 mm polycarbonate window, outside the propeller's fragment zone
-- Vacuum pump (170 L/min), relief valve, normally-open bleed valve and gauge on one manifold
+- Vacuum pump (170 L/min, the host workshop's own), relief valve, normally-open bleed valve and gauge on one manifold
 - Thrust and torque stand: spring-steel flexures, 10 kg thrust cell, torque head on bearings with a 5 kg cell
 - Speed sensor: optical, one pulse a turn
 - Pressure, temperature and humidity sensors on the deck
 - Sealed feed-through plate with potted IP68 cable glands
-- Removable 63 % open perforated baffle
-- Control cabinet: logger, 1,500 W motor supply, emergency stop, door interlock and arming key
+- Removable 80 % open perforated baffle
+- Control cabinet: logger, contactor for the host lab's 1,500 W motor supply, emergency stop, door interlock and arming key
 
 ## Building the prototype
 
-The [prototype build plan](docs/05-build-plan.md) shows how to make each of the twenty-two made parts, with a making sketch for each, ten joint close-ups and twenty assembly steps. The vessel is cut and welded by a welding shop from pipe, plate and two bought tank heads; the stand is cut, drilled and bored from aluminium and spring-steel shim. Before any pump-down a qualified engineer reviews the vessel calculation, and the first pump-down is a proof test behind a guard. The plan is a plan, not yet built.
+The [prototype build plan](docs/05-build-plan.md) shows how to make each of the twenty-two made parts, with a making sketch for each, ten joint close-ups and twenty assembly steps. The vessel is cut and welded by a welding shop from a surplus pipe offcut, plate and two surplus tank heads, each checked for roundness and thickness before use; the stand is cut, drilled and bored from aluminium and spring-steel shim. Before any pump-down a qualified engineer reviews the vessel calculation, and the first pump-down is a proof test behind a guard. The plan is a plan, not yet built.
 
 ![Every component of AltiRig, pulled apart and numbered in build order](docs/05-build-plan/overview.png)
 

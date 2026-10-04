@@ -261,7 +261,7 @@ K_baf = 2 * K_plate * ar ** 2                                  # crossed twice, 
 K_turn = 2 * 1.0 * (ar / (1 - ar)) ** 2                        # two 180 deg turns at the return velocity
 out("F", "Disc area / chamber section", ar, "")
 out("F", "Vessel inside diameter / propeller diameter", 2 * ri / Dp, "")
-out("F", "Baffle loss coefficient (63 % open, at the section velocity)", K_plate, "")
+out("F", f"Baffle loss coefficient ({f * 100:.0f} % open, at the section velocity; ALR-DDR-003)", K_plate, "")
 
 
 def chamber_effect(Kx, rho=rho_room, n=None):
@@ -283,17 +283,19 @@ for label, Kx in (("with the baffle", K_baf + K_turn), ("baffle removed", K_turn
     out("F", f"Extra loop loss, {label}", Kx, "dynamic heads")
     out("F", f"Chamber thrust excess, {label}: same power model", (r_p - 1) * 100, "%", "R6")
     out("F", f"Chamber thrust excess, {label}: same speed model", (r_s - 1) * 100, "%", "R6", "target within 5 %")
+f63 = 0.63                                                    # the TRL 3 baffle replaced by ALR-DDR-003
+K63 = (0.707 * (1 - f63) ** 0.375 + 1 - f63) ** 2 / f63 ** 2
+r_s63, r_p63 = chamber_effect(2 * K63 * ar ** 2 + K_turn)
+out("F", "Superseded 63 % open baffle, same power model", (r_p63 - 1) * 100, "%", "R6", "for comparison")
+out("F", "Superseded 63 % open baffle, same speed model", (r_s63 - 1) * 100, "%", "R6", "for comparison")
 ri40 = (1016.0 / 2 - 7.9) / 1000
 ar40 = A_p / (math.pi * ri40 ** 2)
-K40 = 2 * K_plate * ar40 ** 2 + 2 * (ar40 / (1 - ar40)) ** 2
+K40 = 2 * K63 * ar40 ** 2 + 2 * (ar40 / (1 - ar40)) ** 2
 r_s40, r_p40 = chamber_effect(K40)
-f8 = 0.80
-K8 = (0.707 * (1 - f8) ** 0.375 + 1 - f8) ** 2 / f8 ** 2
-r_s8, r_p8 = chamber_effect(2 * K8 * ar ** 2 + K_turn)
-out("F", "Option: 80 % open baffle, same power model", (r_p8 - 1) * 100, "%", "R6")
-out("F", "Option: 80 % open baffle, same speed model", (r_s8 - 1) * 100, "%", "R6")
-out("F", "Option: 1,016 mm vessel with the baffle, same power model", (r_p40 - 1) * 100, "%", "R6")
-out("F", "Option: 1,016 mm vessel with the baffle, same speed model", (r_s40 - 1) * 100, "%", "R6")
+out("F", "Reserve (option C): 1,016 mm vessel with the 63 % baffle, same power model", (r_p40 - 1) * 100, "%", "R6",
+    "only if the TRL 4 comparison shows more than 5 %")
+out("F", "Reserve (option C): 1,016 mm vessel with the 63 % baffle, same speed model", (r_s40 - 1) * 100, "%", "R6",
+    "only if the TRL 4 comparison shows more than 5 %")
 v_ret = math.sqrt(50.0 / (2 * rho_room * A_p)) * ar / (1 - ar)
 out("F", "Return flow speed along the wall at 50 N", v_ret, "m/s")
 
@@ -309,6 +311,12 @@ target = 1000.0
 out("H", "Estimated cost of the constructable design", total, "USD", "R10")
 out("H", "Value-engineering target", target, "USD", "R10")
 out("H", "Over the value-engineering target by", total - target, "USD", "R10")
+# ALR-DDR-003 (R10 option B): surplus pipe and heads, host lab's supply and workshop pump. New prices from the
+# TRL 3 bill of materials, used if a condition fails: pipe USD 420, heads 2 x USD 260, supply USD 320, pump USD 220 more.
+out("H", "Cost if the surplus pipe and heads fail their checks and are bought new", total + (420 - 210) + 2 * (260 - 130),
+    "USD", "R10")
+out("H", "Cost if, in addition, the supply and pump have to be bought", total + 210 + 260 + 320 + 220, "USD", "R10",
+    "the TRL 3 estimate plus the 80 % baffle")
 
 with (Path(__file__).parent / "results.csv").open("w", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=["section", "quantity", "value", "unit", "requirement", "note"])

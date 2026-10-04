@@ -1,4 +1,4 @@
-"""AltiRig general arrangement sheet ALR-DWG-001, Rev P2 (TRL 3, constructable design ALR-DDR-002).
+"""AltiRig general arrangement sheet ALR-DWG-001, Rev P3 (TRL 3, constructable design ALR-DDR-002).
 
 Run from the repo root:  python cad/src/sheets.py
 Writes cad/drawings/ALR-DWG-001.svg, .pdf and .png from the parametric model in cad/src/model.py
@@ -30,11 +30,12 @@ def main():
     work = ROOT / "cad" / "drawings" / "_views"
     views = project_views(asm, work)
     s = Sheet(project="AltiRig", title="Altitude test chamber with a thrust stand: general arrangement",
-              dwg_no="ALR-DWG-001", rev="P2", author="Amish Chadha", date=DATE, theme="technical",
+              dwg_no="ALR-DWG-001", rev="P3", author="Amish Chadha", date=DATE, theme="technical",
               material="Per bom/bom.csv: carbon steel vessel (pipe, plate, tank heads), polycarbonate window, "
                        "6082 aluminium stand. PRELIMINARY, NOT FOR FABRICATION",
               revisions=[("P1", "General arrangement of the TRL 3 concept", DATE, "AC"),
-                         ("P2", "Constructable design (ALR-DDR-002)", DATE, "AC")])
+                         ("P2", "Constructable design (ALR-DDR-002)", DATE, "AC"),
+                         ("P3", "Baffle 80 % open (ALR-DDR-003)", DATE, "AC")])
     s.add_ortho(views)
     s.add_svg(views["iso"], 276, 32, 140, 82, label="Isometric view", sublabel="Not to scale; control cabinet not shown")
     s.add_notes("Main dimensions and interfaces (mm)", [
@@ -44,7 +45,7 @@ def main():
         f"Window (13): polycarbonate {P['WIN_D']:.0f} dia x {P['WIN_T']:.0f}, centre {P['WIN_X']:.0f} from flange face",
         f"Window nozzle (4): {P['WN_OD']} x {P['WN_T']}; feed-through (5): {P['FN_OD']} x {P['FN_T']}",
         f"Propeller plane {P['PROP_X']:.0f} from flange face; up to {P['PROP_D']:.0f} dia",
-        f"Baffle (17): {P['BAF_D']:.0f} dia, 63 % open, {P['BAF_X']:.0f} from flange face",
+        f"Baffle (17): {P['BAF_D']:.0f} dia, {P['BAF_OPEN'] * 100:.0f} % open, {P['BAF_X']:.0f} from flange face",
         f"Deck (16) top {L['deck_top']:.0f} above floor; saddles (7) at {P['SAD_X'][0]:.0f} and {P['SAD_X'][1]:.0f}",
         "Vessel designed for full vacuum; relief valve opens at 55 kPa below atmosphere",
         "Hinge (10) on the far side; door swings open to +Y",

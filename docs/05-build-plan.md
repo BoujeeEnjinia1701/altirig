@@ -3,7 +3,7 @@ doc_id: ALR-BLD-001
 title: AltiRig prototype build plan
 project: AltiRig
 doc_type: Build plan
-version: "0.1"
+version: "0.2"
 status: Draft
 date: '2026-10-03'
 author: Amish Chadha
@@ -13,6 +13,10 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: First build plan; design made constructable (ALR-DDR-002)
+- version: "0.2"
+  date: '2026-10-03'
+  author: Amish Chadha
+  change: Amish's round 2 decisions (ALR-DDR-003); 80 % open baffle; surplus pipe and heads with acceptance checks; host lab's motor supply and workshop vacuum pump
 ---
 
 # AltiRig prototype build plan
@@ -27,7 +31,7 @@ revisions:
 
 *Figure 1. Every component pulled apart and numbered in build order: the vessel 1 to 18, window and feed-through 19 to 24, valve manifold, baffle and deck 25 to 27, the thrust stand 28 to 43, the motor and propeller under test 44 and 45, and the pump, hose and control cabinet 46 to 48.*
 
-The prototype is a horizontal steel vacuum vessel about 2 m long and 813 mm in diameter, standing on two saddles with its axis 800 mm above the floor, with a flexure thrust stand inside. The vessel is a length of steel pipe with a bought dished head welded on the rear end; the door is a second head welded into a flange ring, hung on a hinge and pulled onto a sponge gasket by three latches. A polycarbonate window and a cable feed-through plate sit on short pipe nozzles on the near side, and a valve manifold sits on top. Inside, a deck carries the stand: a base plate, two spring-steel leaves holding a carriage, a load cell for thrust, a torque head on bearings with a second load cell, and a speed sensor. Twenty-two kinds of part are made, in a welding shop and a small machine shop: cutting pipe and plate, drilling and tapping, rolling one strip, welding, boring and turning. The pump, valves, gaskets, load cells, electronics and test article are bought. The parts cost about USD 4,920 from the bill of materials.
+The prototype is a horizontal steel vacuum vessel about 2 m long and 813 mm in diameter, standing on two saddles with its axis 800 mm above the floor, with a flexure thrust stand inside. The vessel is a length of steel pipe with a bought dished head welded on the rear end; the door is a second head welded into a flange ring, hung on a hinge and pulled onto a sponge gasket by three latches. A polycarbonate window and a cable feed-through plate sit on short pipe nozzles on the near side, and a valve manifold sits on top. Inside, a deck carries the stand: a base plate, two spring-steel leaves holding a carriage, a load cell for thrust, a torque head on bearings with a second load cell, and a speed sensor. Twenty-two kinds of part are made, in a welding shop and a small machine shop: cutting pipe and plate, drilling and tapping, rolling one strip, welding, boring and turning. The valves, gaskets, load cells, electronics and test article are bought; the pipe offcut and the two tank heads are bought surplus and must pass the acceptance checks in sections 3.1 and 3.10, and the motor supply and the vacuum pump are the host lab's own (ALR-DDR-003). The parts cost about USD 3,920 from the bill of materials (an estimate; about USD 4,390 if the surplus steel has to be bought new).
 
 ## 2. What changed to make it buildable
 
@@ -42,7 +46,7 @@ The TRL 2 concept named the parts but not how they are made or held. Each change
 | Nozzles | A window and feed-throughs in the wall | Heavy-wall stubs set in through the wall and cut square, welded inside and out (Figures 28 and 29) | No contour cutting; the heavy wall replaces the steel removed, so no pads |
 | Window | "A polycarbonate or laminated window" | 20 mm polycarbonate clamped over a spacer ring that sets the gasket squeeze (Figure 28) | Never over-clamped; no holes in the window |
 | Feed-through | "Sealed connectors" | An aluminium plate with five potted IP68 cable glands (Figure 29) | Stock parts; potting stops leaks along the strands |
-| Saddles, deck, baffle | Not shown | Welded saddles; two angles inside with a bolted deck; a bolted perforated baffle on four tabs (Figures 31, 32 and 35) | Something to stand on, build on and take out |
+| Saddles, deck, baffle | Not shown | Welded saddles; two angles inside with a bolted deck; a bolted 80 % open perforated baffle on four tabs (Figures 31, 32 and 35; ALR-DDR-003) | Something to stand on, build on and take out |
 | Hinge and latches | Not shown | Lugs and a pin on the far side; three bolt-on latches (Figure 30) | Carry the 72 kg door and pull it on for the first seal |
 | Thrust stand | "Load cells" | Two spring-steel leaves carrying a carriage; an upright bar cell between an anchor and a hanger (Figure 33) | No friction; a bending-beam cell is loaded across its length |
 | Torque | "Reaction torque" | A torque head on two bearings, with an arm resting on a second cell (Figure 34) | Reads torque without thrust passing through it |
@@ -58,14 +62,15 @@ Sizes are in millimetres. "Door end" is the end with the door; distances along t
 
 *Figure 2. Shell (ALR-DWG-101).*
 
-**What it is and what it is made from.** The body of the vessel: steel pipe 813 mm outside diameter with a 6.35 mm wall (32 in x 1/4 in), welded line pipe or water pipe, 1,500 mm long. About 185 kg.
+**What it is and what it is made from.** The body of the vessel: steel pipe 813 mm outside diameter with a 6.35 mm wall (32 in x 1/4 in), welded line pipe or water pipe, 1,500 mm long, bought as a surplus offcut or remnant (ALR-DDR-003). About 185 kg.
 
 **How to make it.**
 
 1. Cut the pipe 1,500 mm long with both ends square to within 1 mm.
 2. Measure the diameter at three places around each end and in the middle. The largest less the smallest must be no more than 8 mm. Reject a dented pipe.
-3. Mark a straight line along the top. Mark the window hole centre 250 mm from the door end and the feed-through hole centre 740 mm from the door end, both on the side, a quarter turn from the top line. Mark the manifold hole 1,300 mm from the door end on the top line.
-4. Cut the holes to the nozzle outside sizes plus 1 to 2 mm: 275 mm for the window, 170 mm for the feed-through, 62 mm for the manifold. Cut square to the pipe's axis. Grind smooth and bevel the outside edge.
+3. Measure the wall thickness at eight points around each end, and at the hole positions once they are cut, with callipers or an ultrasonic thickness gauge. No reading may be under 5.9 mm. Reject a pitted or corroded pipe. A surplus pipe that fails step 2 or step 3 is not used: buy a new-cut length instead (the shell's collapse factor of 6.7 assumes both).
+4. Mark a straight line along the top. Mark the window hole centre 250 mm from the door end and the feed-through hole centre 740 mm from the door end, both on the side, a quarter turn from the top line. Mark the manifold hole 1,300 mm from the door end on the top line.
+5. Cut the holes to the nozzle outside sizes plus 1 to 2 mm: 275 mm for the window, 170 mm for the feed-through, 62 mm for the manifold. Cut square to the pipe's axis. Grind smooth and bevel the outside edge.
 
 **How it fits the parts next to it.** The flange ring slides over the door end, the rear head butts against the far end, the nozzles pass through the holes, and the saddles' wear plates take it from below. All are welded (steps 1 to 5).
 
@@ -223,7 +228,7 @@ Sizes are in millimetres. "Door end" is the end with the door; distances along t
 
 *Figure 11. Door: the second head welded into the second flange ring (ALR-DWG-110).*
 
-**What it is and what it is made from.** A bought 2:1 ellipsoidal tank head, 813 mm outside diameter, 6.35 mm, with a 40 mm straight skirt, welded into the second flange ring, with the two door lugs. About 72 kg.
+**What it is and what it is made from.** A 2:1 ellipsoidal tank head, 813 mm outside diameter, 6.35 mm, with a 40 mm straight skirt, bought surplus (ALR-DDR-003), welded into the second flange ring, with the two door lugs. About 72 kg. Before welding, check both surplus heads: outside diameter matching the pipe, skirt at least 40 mm, thickness no less than 5.9 mm at the knuckle and crown, no dents or pitting. A head that fails is replaced by a new one.
 
 **How to make it.**
 
@@ -310,9 +315,9 @@ Sizes are in millimetres. "Door end" is the end with the door; distances along t
 
 *Figure 16. Baffle plate (ALR-DWG-115).*
 
-**What it is and what it is made from.** A 790 mm disc of 2 mm perforated steel with 10 mm round holes on a 12 mm staggered pitch (63 % open).
+**What it is and what it is made from.** A 790 mm disc of 2 mm perforated steel sheet with hexagonal holes, 80 % open (for example 10 mm across flats on an 11.2 mm pitch), or of expanded steel mesh with a stated open area of 78 % to 82 % (ALR-DDR-003). About 1.5 kg.
 
-**How to make it.** Cut the disc and file any half holes at the rim smooth. Drill four 9 mm holes at 45°, 135°, 225° and 315° on a 764 mm circle to match the tabs.
+**How to make it.** Cut the disc and file any part holes or strand ends at the rim smooth. Drill four 9 mm holes at 45°, 135°, 225° and 315° on a 764 mm circle to match the tabs; where a hole falls on a thin bar or strand, use a 30 mm washer on each side.
 
 **How it fits the parts next to it.** It bolts to the four tabs with M8 bolts, 590 mm downstream of the propeller, with a 5 mm gap to the wall (Figure 35). It is taken out for the comparison runs without it.
 
@@ -320,7 +325,7 @@ Sizes are in millimetres. "Door end" is the end with the door; distances along t
 
 *Figure 35. Joint 7: the baffle bolted to a tab welded inside the shell.*
 
-**Check before moving on.** The gap to the wall is even all round.
+**Check before moving on.** The gap to the wall is even all round, and the open area on the supplier's data sheet is 78 % to 82 %.
 
 ### 3.16 Stand base plate
 
@@ -438,14 +443,14 @@ Sizes are in millimetres. "Door end" is the end with the door; distances along t
 
 ### 3.23 Bought components
 
-- **Dished heads (2):** 2:1 semi-ellipsoidal carbon steel tank heads, 813 mm outside diameter, 6.35 mm, 40 mm straight skirt. One is welded to the rear of the shell; one becomes the door.
+- **Dished heads (2):** 2:1 semi-ellipsoidal carbon steel tank heads, 813 mm outside diameter, 6.35 mm, 40 mm straight skirt, bought surplus or second-hand and unused, accepted only after the checks in section 3.10 (ALR-DDR-003). One is welded to the rear of the shell; one becomes the door.
 - **Gaskets:** closed-cell EPDM sponge strip 6 x 45 mm, about 2.8 m, glued to the shell ring's face with contact adhesive, joined with a scarf cut at the bottom; solid EPDM sheet 6 mm and 2 mm cut to rings for the window and the feed-through.
 - **Latch clamps (3):** adjustable latch clamps holding at least 3 kN, bolted to the back of the shell ring at the top, the window side and the bottom.
 - **Valve manifold:** an adjustable vacuum relief valve set to open at 55 kPa below atmosphere; a 63 mm vacuum gauge; a normally-open solenoid bleed valve with a needle valve; a 1/2 in manual vent valve; a 1 in isolation ball valve and pump port. Assembled on one block with thread sealant and bolted to the stub flange with four M8 screws and a 2 mm gasket (Figure 27).
 - **Load cells:** bending-beam bar cells 12.7 x 12.7 x 80 mm, C3 class or better: 10 kg for thrust, 5 kg for torque, with two 24-bit amplifiers.
 - **Air sensors:** two barometric sensors accurate to 50 Pa absolute, one humidity sensor and two class A platinum probes, in a vented printed box on the deck.
-- **Vacuum pump and hose:** single-stage rotary vane pump, 170 L/min, with an oil-mist filter; 25 mm bore wire-reinforced hose.
-- **Control cabinet:** floor-standing steel enclosure with a 30 mA residual current device on the mains inlet, the 1,500 W motor supply, the speed controller and power sensor, the controller and logger, the emergency stop and contactors, the door interlock switch (on the top latch) and the arming key switch.
+- **Vacuum pump and hose:** the host workshop's own single-stage rotary vane pump (ALR-DDR-003), used only if it gives at least 170 L/min and has a thermal overload and an oil-mist exhaust filter; otherwise one to that specification is bought. 25 mm bore wire-reinforced hose with an adapter to the pump inlet.
+- **Control cabinet:** floor-standing steel enclosure with a 30 mA residual current device on the mains inlet, the motor supply contactor and the host lab's 1,500 W DC supply (20 to 28 V, with a remote on/off input; ALR-DDR-003), the speed controller and power sensor, the controller and logger, the emergency stop and contactors, the door interlock switch (on the top latch) and the arming key switch.
 - **Motor and propeller under test:** an example 6S motor for 15 in propellers and a 15 x 5 in carbon propeller; users bring their own.
 
 ![Figure 27. Joint 2, rear head and manifold stub](05-build-plan/joint-02.png)
